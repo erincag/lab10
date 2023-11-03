@@ -42,6 +42,63 @@ dbListTables(con)
 PRAGMA table_info(actor)
 ```
 
-```{sql connection=con}
+## Exercise 1
 
+Retrieve actor ID, first name and last name from actor table.
+
+```{sql connection=con}
+SELECT actor_id, first_name, last_name
+FROM actor
+ORDER by last_name, first_name
+```
+
+## Exercise 2
+
+```{sql connection= con}
+SELECT actor_id, first_name, last_name
+FROM actor
+WHERE last_name IN ('WILLIAMS', 'DAVIS')
+```
+
+## Exercise 3
+
+```{sql connection= con}
+SELECT DISTINCT customer_id
+FROM rental
+WHERE date(rental_date) = '2005-07-05'
+```
+
+## Exercise 4
+
+4.1
+
+```{sql connection= con}
+SELECT *
+FROM payment
+WHERE amount IN (1.99, 7.99, 9.99)
+```
+
+4.2
+
+```{sql connection=con}
+SELECT *
+FROM payment
+WHERE amount > 5
+```
+
+4.3
+
+```{sql connection=con}
+SELECT *
+FROM payment
+WHERE amount > 5 and amount < 8
+```
+
+## Exercise 5
+
+```{sql connection=con}
+SELECT payment.payment_id, payment.amount, customer.last_name
+FROM payment
+  INNER JOIN customer 
+WHERE payment.customer_id = customer.customer_id AND customer.last_name = 'DAVIS'
 ```
